@@ -2,6 +2,7 @@ extends layout
 
 block content
     each article in articles
-        h2= article.title
-        .date= article.date
-        div!= article.html
+        section
+            h2= article.title
+            .date= article.date
+            div!= article.html
