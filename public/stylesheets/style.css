@@ -28,7 +28,7 @@ li:last-child {
   text-decoration: none;
   border-bottom: dashed 1px #111;
 }
-.text-link {
+a.text-link {
   background: #f9f9f9;
   border: solid 1px #ccc;
   border-radius: 5px;
