@@ -4,7 +4,7 @@ html {
   margin: 0;
 }
 body {
-  padding: 0 10px 10px 10px;
+  padding: 10px;
   color: #222;
   font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
   line-height: 150%;
@@ -35,4 +35,14 @@ a {
   margin-left: 10px;
   padding: 3px 10px;
   font-weight: normal;
+}
+h2 {
+  margin: 0;
+}
+h3 {
+  font-size: 16px;
+  margin: 1em 0;
+}
+.date {
+  color: #666;
 }

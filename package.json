@@ -10,6 +10,7 @@
     "jade": "*",
     "stylus": "*",
     "feedparser": "*",
-    "request": "*"
+    "request": "*",
+    "moment": "*"
   }
 }
