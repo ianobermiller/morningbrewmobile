@@ -1,8 +1,15 @@
 doctype 5
 html
-  head
-    title= title
-    meta(name="viewport", content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;")
-    link(rel='stylesheet', href='/stylesheets/style.css')
-  body
-    block content
+    head
+        title= title
+        meta(name="viewport", content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;")
+        link(rel='stylesheet', href='/stylesheets/style.css')
+    body
+        .content
+            block content
+        .footer
+            |All content &copy; 
+            a(href='http://blog.cwa.me.uk/contact/') Chris Alcock
+            |. Mobile site by 
+            a(href='http://ianobermiller.com') Ian Obermiller
+            |.

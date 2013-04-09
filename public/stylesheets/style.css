@@ -18,7 +18,10 @@ li {
 li {
   margin-bottom: 1em;
 }
-a {
+li:last-child {
+  margin-bottom: 0;
+}
+.content a {
   color: #111;
   font-size: 14px;
   font-weight: bold;
@@ -55,4 +58,8 @@ section:nth-child(2n) {
 }
 section:nth-child(2n) .text-link {
   background: #fff;
+}
+.footer {
+  color: #666;
+  padding: 0 10px 10px 10px;
 }
