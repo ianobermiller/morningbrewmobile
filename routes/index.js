@@ -2,7 +2,16 @@ var request = require('request');
 var FeedParser = require('feedparser');
 var moment = require('moment');
 
+var expirationInMilliseconds =  1 * 60 * 60 * 1000; // 1 hour 
+
+var lastData = null;
+var lastDataTime = null;
+
 exports.index = function(req, res){
+    if (lastData && (Date.now() - lastDataTime) < expirationInMilliseconds) {
+        return res.render('index', lastData);
+    }
+
     var data = { title: 'Morning Brew Mobile', articles: [] };
     request('http://blog.cwa.me.uk/feed/')
         .pipe(new FeedParser())
@@ -21,6 +30,9 @@ exports.index = function(req, res){
             data.articles.push(art);
         })
         .on('end', function() {
-            res.render('index', data)
+            data.articles = data.articles.slice(0, 5);
+            lastData = data;
+            lastDataTime = Date.now();
+            res.render('index', data);
         });
 };
