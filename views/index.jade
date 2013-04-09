@@ -1,0 +1,6 @@
+extends layout
+
+block content
+    each article in articles
+        h2= article.title
+        div!= article.html
