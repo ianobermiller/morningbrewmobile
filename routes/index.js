@@ -8,7 +8,9 @@ var expirationInMilliseconds =  1 * 60 * 60 * 1000; // 1 hour
 var lastData = null;
 var lastDataTime = null;
 exports.index = function(req, res){
-    if (lastData && (Date.now() - lastDataTime) < expirationInMilliseconds) {
+    if (lastData && 
+        lastData.articles && lastData.articles.length > 0 && // sanity/error check
+        (Date.now() - lastDataTime) < expirationInMilliseconds) {
         return res.render('index', lastData);
     }
 
