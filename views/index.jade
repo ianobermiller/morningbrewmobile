@@ -3,6 +3,9 @@ extends layout
 block content
     each article in articles
         section
-            h2= article.title
-            .date= article.date
-            div!= article.html
+            a.text-link.right(href=article.commentLink) comments
+            h2
+                a(href=article.link)= article.title
+            .date
+                a(href=article.link)= article.date
+            div!= article.html  
