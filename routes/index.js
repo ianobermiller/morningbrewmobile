@@ -40,7 +40,7 @@ exports.index = function(req, res){
                     var $a = $(el);
                     $a.addClass('normal-link');
                     var url = $a.attr('href');
-                    textLinks.push('<a class="text-link" href="http://viewtext.org/article?url=$1">text ' + (count > 1 ? (i + 1) : '') + '</a>');
+                    textLinks.push('<a class="text-link" href="http://viewtext.org/article?url=' + url + '">text ' + (count > 1 ? (i + 1) : '') + '</a>');
                     if (count > 1) {
                         $a.after('<sup>' + (i + 1) + '</sup')
                     }
