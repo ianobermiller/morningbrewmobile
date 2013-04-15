@@ -1,6 +1,7 @@
 var request = require('request');
 var FeedParser = require('feedparser');
 var moment = require('moment');
+var cheerio = require('cheerio');
 
 var expirationInMilliseconds =  1 * 60 * 60 * 1000; // 1 hour 
 
@@ -25,8 +26,29 @@ exports.index = function(req, res){
             var art = {};
             art.title = article.title;
             art.date = moment(article.date).format('MMMM Do YYYY');
-            art.html = article.description;
-            art.html = art.html.replace(/<a href="(.*?)">.*?<\/a>/g, '<a class="text-link" href="http://viewtext.org/article?url=$1">Text</a> $&');
+
+            // Add text links for each linked article/site
+            // If there is more than one link in an element, number them to disambiguate
+            var $ = cheerio.load(article.description);
+            $('p, li').each(function() {
+                var $parent = $(this);
+                var $as = $parent.find('a');
+                var count = $as.length;
+                var textLinks = [];
+                $as.each(function(i, el) {
+                    var $a = $(el);
+                    var url = $a.attr('href');
+                    textLinks.push('<a class="text-link" href="http://viewtext.org/article?url=$1">text ' + (count > 1 ? (i + 1) : '') + '</a>');
+                    if (count > 1) {
+                        $a.after('<sup>' + (i + 1) + '</sup')
+                    }
+                });
+                if (textLinks.length > 0) {
+                    $parent.prepend('<div class="text-links">' + textLinks.join('') + '</div>');
+                }
+            });
+            art.html = $.html();
+
             data.articles.push(art);
         })
         .on('end', function() {
